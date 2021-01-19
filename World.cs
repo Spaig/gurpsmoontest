@@ -142,9 +142,86 @@ namespace gurpsmoontest
             }
         }
 
-        public double genBlackbody(int type) {
-            //TODO
-            switch (type) { }
+        public double genBlackbody(int type, double atmomass, int surfacetemp, int hydro)
+        {//To determine the blackbody correction for a world, use the following formula: correction = absorption (from book) * [1 + (atmomass * greenhouse (also from book))
+         //To determine the blackbody temperature,divide the average surface temperature by the blackbody correction.
+            double correction;
+            switch (type) {
+                case 0:
+                    correction = .86;
+                    return surfacetemp / correction;
+                case 1:
+                    correction = .77;
+                    return surfacetemp / correction;
+                case 2://2, 9, and 15 have identical algorithms
+                    correction = .97;
+                    return surfacetemp / correction;
+                case 9:
+                    correction = .97;
+                    return surfacetemp / correction;
+                case 15:
+                    correction = .97;
+                    return surfacetemp / correction;
+                case 3:
+                    correction = .67;
+                    return surfacetemp / correction;
+                case 6://3 and 6 have identical algorithms
+                    correction = .67;
+                    return surfacetemp / correction;
+                case 5:
+                    correction = .96;
+                    return surfacetemp / correction;
+                case 7:
+                    correction = (.84 * (1 + (atmomass * 0.2)));
+                    return surfacetemp / correction;
+                case 13://7 and 13 have identical algorithms
+                    correction = (.84 * (1 + (atmomass * 0.2)));
+                    return surfacetemp / correction;
+                case 8:
+                    correction = (.77 * (1 + (atmomass * 2)));
+                    return surfacetemp / correction;
+                case 14://8 and 14 have identical algorithms
+                    correction = (.77 * (1 + (atmomass * 2)));
+                    return surfacetemp / correction;
+                case 4:
+                    correction = (.93 * (1 + (atmomass * 0.1)));
+                    return surfacetemp / correction;
+                case 12:
+                    correction = (.86 * (1 + (atmomass * 0.2)));
+                    return surfacetemp / correction;
+                case 18://12 and 18 have identical algorithms\
+                    correction = (.86 * (1 + (atmomass * 0.2)));
+                    return surfacetemp / correction;
+                case 10://10,11,16, and 17 are affected by hydrographic coverage, so they get a helper method
+                    return specialOceanGardenBlack(hydro, atmomass, surfacetemp);
+                case 11:
+                    return specialOceanGardenBlack(hydro, atmomass, surfacetemp);
+                case 16:
+                    return specialOceanGardenBlack(hydro, atmomass, surfacetemp);
+                case 17:
+                    return specialOceanGardenBlack(hydro, atmomass, surfacetemp);
+                default:
+                    return 0;
+
+            }
+        }
+
+        private double specialOceanGardenBlack(int hydro, double atmomass, int surfacetemp)
+        {
+            double correction;
+            if (hydro >= 2) {
+                correction = (.95 * (1 + (atmomass * 0.16)));
+            }
+            else if (hydro >= 5) {
+                correction = (.92 * (1 + (atmomass * 0.16)));
+            }
+            else if (hydro >= 9) {
+                correction = (.88 * (1 + (atmomass * 0.16)));
+            }
+            else {
+                correction = (.84 * (1 + (atmomass * 0.16)));
+            }
+            return surfacetemp / correction;
         }
 
         public double calcDiameter(double blackbody, double density) { }

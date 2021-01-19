@@ -54,3 +54,10 @@ namespace gurpsmoontest
 //figure out how to store each generated world (objects? 3d array?)
 //data flow
 //display (chart? exporting?)
+
+//Stretch TODO
+//convert to whole-system generator
+//pick a star
+//generate planets
+//hook up moon system to planets
+//blackbody base calculation
