@@ -102,10 +102,44 @@ namespace gurpsmoontest
             }
         }
 
-        public int genSurfaceTemp(int type)
+        public int genSurfaceTemp(int type, int threedee)//takes world type and a pregenned 3d value
         {
-            //TODO
-            switch (type) { }
+            temp = threedee - 3;
+            //roll 3d-3, multiply the result by the Step value, and then add the minimum value from the Range
+            switch (type) {
+                case 0:
+                    return (temp * 4) + 80;
+                case 1:
+                    return (temp * 4) + 80;
+                case 4:
+                    return (temp * 4) + 80;
+                case 7:
+                    return (temp * 5) + 140;
+                case 13:
+                    return (temp * 5) + 140;
+                case 2:
+                    return (temp * 24) + 140;
+                case 5:
+                    return (temp * 24) + 140;
+                case 3:
+                    return (temp * 2) + 50;
+                case 6:
+                    return (temp * 2) + 50;
+                case 12:
+                    return (temp * 10) + 80;
+                case 18:
+                    return (temp * 10) + 80;
+                case 8:
+                    return (temp * 30) + 500;
+                case 9:
+                    return (temp * 30) + 500;
+                case 14:
+                    return (temp * 30) + 500;
+                case 15:
+                    return (temp * 30) + 500;
+                default://de facto case 10,11,16,17
+                    return (temp * 6) + 250;
+            }
         }
 
         public double genBlackbody(int type) {
