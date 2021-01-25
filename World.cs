@@ -15,7 +15,8 @@ namespace gurpsmoontest
         double blackbody;//in kelvins
         double density1;//Earths
         double density2;//g per cc
-        double diameter;//in meters
+        double diameter;//in multiples of the diameter of earth
+        double diameter2;//in miles
         double surfacegravity;//in G
         double mass;//in Earths
         double pressure;//in atm
@@ -206,7 +207,7 @@ namespace gurpsmoontest
             }
         }
 
-        private double specialOceanGardenBlack(int hydro, double atmomass, int surfacetemp)
+        public double specialOceanGardenBlack(int hydro, double atmomass, int surfacetemp)
         {
             double correction;
             if (hydro >= 2) {
@@ -224,11 +225,175 @@ namespace gurpsmoontest
             return surfacetemp / correction;
         }
 
-        public double calcDiameter(double blackbody, double density) { }
+        public double diameterMaxFactor(int type, double blackbody, double density) {//more values from the book, ugh - have to hardcode
+            double factor = Math.Sqrt(blackbody/density);
+            switch (type){ 
+        //tiny
+                 case 0:
+                    return factor * 0.004;
+                 case 1:
+                    return factor * 0.004;
+                  case 2:
+                    return factor * 0.004;
+        //small
+                 case 3:
+                    return factor * 0.024;
+                case 4:
+                     return factor * 0.024;
+                 case 5:
+                    return factor * 0.024;
+        //standard
+                 case 6:
+                    return factor * 0.03;
+                case 7:
+                    return factor * 0.03;
+                case 8:
+                    return factor * 0.03;
+                case 9:
+                    return factor * 0.03;
+                case 10:
+                    return factor * 0.03;
+                case 11:
+                    return factor * 0.03;
+                case 12:
+                    return factor * 0.03;
+                //large
+                case 13:
+                    return factor * 0.065;
+                case 14:
+                    return factor * 0.065;
+                case 15:
+                    return factor * 0.065;
+                case 16:
+                    return factor * 0.065;
+                case 17:
+                    return factor * 0.065;
+                case 18:
+                    return factor * 0.065;
+                default:
+            return 1; }
+        }
 
-        public double calcSurfGrav(double diameter, double density) { }
+        public double diameterMinFactor(int type, double blackbody, double density) {//more values from the book, ugh - have to hardcode
+            double factor = Math.Sqrt(blackbody / density);
+            switch (type) { 
+        //tiny
+                case 0:
+                    return factor * 0.024;
+                case 1:
+                    return factor * 0.024;
+                case 2:
+                    return factor * 0.024;
+                //small
+                case 3:
+                    return factor * 0.03;
+                case 4:
+                    return factor * 0.03;
+                case 5:
+                    return factor * 0.03;
+                //standard
+                case 6:
+                    return factor * 0.065;
+                case 7:
+                    return factor * 0.065;
+                case 8:
+                    return factor * 0.065;
+                case 9:
+                    return factor * 0.065;
+                case 10:
+                    return factor * 0.065;
+                case 11:
+                    return factor * 0.065;
+                case 12:
+                    return factor * 0.065;
+                //large
+                case 13:
+                    return factor * 0.091;
+                case 14:
+                    return factor * 0.091;
+                case 15:
+                    return factor * 0.091;
+                case 16:
+                    return factor * 0.091;
+                case 17:
+                    return factor * 0.091;
+                case 18:
+                    return factor * 0.091;
+                default:
+                    return 1;
+            }
+        }
 
-        public double calcMass(double density, double diameter) { }
+        public double calcDiameter(int type, Random rand, double dMin, double dMax) {
+            
+            int twodee = (rand.Next(5) + 1) + (rand.Next(5) + 1) + 2;//roll 2 d6 plus 2
+            double factor = twodee + ((dMax - dMin) / 10);//multiply by onetenth of the difference between the maximum and minimum diameter values
+
+            switch (type)
+            {//add the result to the minimum value.
+                //tiny
+                case 0:
+                    return factor + 0.004;
+                case 1:
+                    return factor + 0.004;
+                case 2:
+                    return factor + 0.004;
+                //small
+                case 3:
+                    return factor + 0.024;
+                case 4:
+                    return factor + 0.024;
+                case 5:
+                    return factor + 0.024;
+                //standard
+                case 6:
+                    return factor + 0.03;
+                case 7:
+                    return factor + 0.03;
+                case 8:
+                    return factor + 0.03;
+                case 9:
+                    return factor + 0.03;
+                case 10:
+                    return factor + 0.03;
+                case 11:
+                    return factor + 0.03;
+                case 12:
+                    return factor + 0.03;
+                //large
+                case 13:
+                    return factor + 0.065;
+                case 14:
+                    return factor + 0.065;
+                case 15:
+                    return factor + 0.065;
+                case 16:
+                    return factor + 0.065;
+                case 17:
+                    return factor + 0.065;
+                case 18:
+                    return factor + 0.065;
+                default:
+                    return 1;
+            }
+        }
+
+        public double diameterToMiles(double diameter) {
+            //To express any diameter in miles, multiply the value in Earth diameters by 7,930.
+            return diameter * 7930;
+        }
+
+        public double calcSurfGrav(double diameter, double density) {
+
+            //surface gravity equals diameter (in Earths) times density (in Earths)
+            return diameter * density;
+        }
+
+        public double calcMass(double density, double diameter) {
+
+            //mass equals density times diameter cubed (in multiples of Earth)
+            return density * (Math.Pow(diameter, 3.0));
+        }
 
         public double calcPressure(double atmomass, double gravity) { }
 
