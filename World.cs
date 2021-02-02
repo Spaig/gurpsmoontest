@@ -68,7 +68,7 @@ namespace gurpsmoontest
             switch (type)
             {
                 case 4:
-                    return (rand.Next(5) + 1 )+ 2;//roll a d6 plus 2
+                    return (rand.Next(5) + 1) + 2;//roll a d6 plus 2
                 case 7:
                     return (rand.Next(5) + 1) + (rand.Next(5) + 1);//roll 2d
                 case 13:
@@ -92,8 +92,10 @@ namespace gurpsmoontest
             }
         }
 
-        public int iceHydro(int die){//special case because ice hydrography is bananas - roll 2d-10 and multiply by 10 % (minimum 0 %)
-            switch (die) {//therefore, on a roll of 2-10, you get a zero, with an 11, its 1, with a 12, its 2
+        public int iceHydro(int die)
+        {//special case because ice hydrography is bananas - roll 2d-10 and multiply by 10 % (minimum 0 %)
+            switch (die)
+            {//therefore, on a roll of 2-10, you get a zero, with an 11, its 1, with a 12, its 2
                 case 12:
                     return 2;
                 case 11:
@@ -107,7 +109,8 @@ namespace gurpsmoontest
         {
             temp = threedee - 3;
             //roll 3d-3, multiply the result by the Step value, and then add the minimum value from the Range
-            switch (type) {
+            switch (type)
+            {
                 case 0:
                     return (temp * 4) + 80;
                 case 1:
@@ -147,7 +150,8 @@ namespace gurpsmoontest
         {//To determine the blackbody correction for a world, use the following formula: correction = absorption (from book) * [1 + (atmomass * greenhouse (also from book))
          //To determine the blackbody temperature,divide the average surface temperature by the blackbody correction.
             double correction;
-            switch (type) {
+            switch (type)
+            {
                 case 0:
                     correction = .86;
                     return surfacetemp / correction;
@@ -210,40 +214,46 @@ namespace gurpsmoontest
         public double specialOceanGardenBlack(int hydro, double atmomass, int surfacetemp)
         {
             double correction;
-            if (hydro >= 2) {
+            if (hydro >= 2)
+            {
                 correction = (.95 * (1 + (atmomass * 0.16)));
             }
-            else if (hydro >= 5) {
+            else if (hydro >= 5)
+            {
                 correction = (.92 * (1 + (atmomass * 0.16)));
             }
-            else if (hydro >= 9) {
+            else if (hydro >= 9)
+            {
                 correction = (.88 * (1 + (atmomass * 0.16)));
             }
-            else {
+            else
+            {
                 correction = (.84 * (1 + (atmomass * 0.16)));
             }
             return surfacetemp / correction;
         }
 
-        public double diameterMaxFactor(int type, double blackbody, double density) {//more values from the book, ugh - have to hardcode
-            double factor = Math.Sqrt(blackbody/density);
-            switch (type){ 
-        //tiny
-                 case 0:
+        public double diameterMaxFactor(int type, double blackbody, double density)
+        {//more values from the book, ugh - have to hardcode
+            double factor = Math.Sqrt(blackbody / density);
+            switch (type)
+            {
+                //tiny
+                case 0:
                     return factor * 0.004;
-                 case 1:
+                case 1:
                     return factor * 0.004;
-                  case 2:
+                case 2:
                     return factor * 0.004;
-        //small
-                 case 3:
+                //small
+                case 3:
                     return factor * 0.024;
                 case 4:
-                     return factor * 0.024;
-                 case 5:
                     return factor * 0.024;
-        //standard
-                 case 6:
+                case 5:
+                    return factor * 0.024;
+                //standard
+                case 6:
                     return factor * 0.03;
                 case 7:
                     return factor * 0.03;
@@ -271,13 +281,16 @@ namespace gurpsmoontest
                 case 18:
                     return factor * 0.065;
                 default:
-            return 1; }
+                    return 1;
+            }
         }
 
-        public double diameterMinFactor(int type, double blackbody, double density) {//more values from the book, ugh - have to hardcode
+        public double diameterMinFactor(int type, double blackbody, double density)
+        {//more values from the book, ugh - have to hardcode
             double factor = Math.Sqrt(blackbody / density);
-            switch (type) { 
-        //tiny
+            switch (type)
+            {
+                //tiny
                 case 0:
                     return factor * 0.024;
                 case 1:
@@ -324,8 +337,9 @@ namespace gurpsmoontest
             }
         }
 
-        public double calcDiameter(int type, Random rand, double dMin, double dMax) {
-            
+        public double calcDiameter(int type, Random rand, double dMin, double dMax)
+        {
+
             int twodee = (rand.Next(5) + 1) + (rand.Next(5) + 1) + 2;//roll 2 d6 plus 2
             double factor = twodee + ((dMax - dMin) / 10);//multiply by onetenth of the difference between the maximum and minimum diameter values
 
@@ -378,24 +392,77 @@ namespace gurpsmoontest
             }
         }
 
-        public double diameterToMiles(double diameter) {
+        public double diameterToMiles(double diameter)
+        {
             //To express any diameter in miles, multiply the value in Earth diameters by 7,930.
             return diameter * 7930;
         }
 
-        public double calcSurfGrav(double diameter, double density) {
+        public double calcSurfGrav(double diameter, double density)
+        {
 
             //surface gravity equals diameter (in Earths) times density (in Earths)
             return diameter * density;
         }
 
-        public double calcMass(double density, double diameter) {
+        public double calcMass(double density, double diameter)
+        {
 
             //mass equals density times diameter cubed (in multiples of Earth)
             return density * (Math.Pow(diameter, 3.0));
         }
 
-        public double calcPressure(double atmomass, double gravity) { }
+        public double calcPressure(double atmomass, double gravity, int type)
+        {
 
+            switch (type)
+            {// pressure = atmomass * book value * surface gravity
+                //tiny worlds have no atmosphere
+                case 0:
+                    return 0;
+                case 1:
+                    return 0;
+                case 2:
+                    return 0;
+                //small
+                case 3:
+                    return 0;
+                case 4:
+                    return atmomass * gravity * 10;
+                case 5:
+                    return 0;
+                //standard
+                case 6:
+                    return 0;
+                case 7:
+                    return atmomass * gravity * 10;
+                case 8:
+                    return atmomass * gravity * 100;
+                case 9:
+                    return 0;
+                case 10:
+                    return atmomass * gravity * 10;
+                case 11:
+                    return atmomass * gravity * 10;
+                case 12:
+                    return atmomass * gravity * 10;
+                //large
+                case 13:
+                    return atmomass * gravity * 5;
+                case 14:
+                    return atmomass * gravity * 500;
+                case 15:
+                    return 0;
+                case 16:
+                    return atmomass * gravity * 5;
+                case 17:
+                    return atmomass * gravity * 5;
+                case 18:
+                    return atmomass * gravity * 5;
+                default:
+                    return 1;
+            }
+
+        }
     }
 }
