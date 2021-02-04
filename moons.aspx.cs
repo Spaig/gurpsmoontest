@@ -16,7 +16,7 @@ namespace gurpsmoontest
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -44,12 +44,13 @@ namespace gurpsmoontest
             worldTypes[18] = dropLargeIceWorld.SelectedIndex;//Large Ice World - 18
             worldTypes[19] = dropGasGiants.SelectedIndex;// Gas Giant - 19
 
+            Context.Items.Add("worldTypes", worldTypes);
+            Server.Transfer("~/calcpage.aspx");
         }  
     }
 }
 
 //OVERALL TODO
-//figure out how to store each generated world (objects? 3d array?)
 //data flow
 //display (chart? exporting?)
 
