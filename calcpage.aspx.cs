@@ -12,7 +12,7 @@ namespace gurpsmoontest
         Random rand = new Random();
         World[] worlds = new World[280];
         int[] worldTypes = new int[20];
-        int count = 0;
+        int count = 0, cursor = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             lblWorldsGet.Text = "Counting worlds...";
@@ -22,7 +22,29 @@ namespace gurpsmoontest
             }
             lblWorldsGet.Text = "Counting worlds... complete!";
             lblWorldsInitialize.Text = "Initializing tiny worlds...";
-            //insert code to generate tiny worlds, etc
+
+            for (int i = 0; i>worldTypes[0];i++) {//tiny ice world generation
+                World temp = new World();//create new World object
+                temp.setType(0);//set type
+                temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method
+                temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                temp.setAtmoMass(genAtmo(roll3D()));//generate atmospheric mass by passing 3D6
+                temp.setHydro(iceHydro(roll1D()));//call genydro with ice world method
+                temp.setSurfaceTemp(genSurfaceTemp(0, roll3D()));//generate surface temperature
+                temp.setBlackBody(genBlackbody(0, temp.getAtmoMass(), temp.getSurfaceTemp(),temp.getHydro()));//set blackbody value with previously generated values
+                temp.setEarthsDiameter(calcDiameter(0, rand,
+                    diameterMaxFactor(0, temp.getBlackBody(), temp.getEarthDensity()),
+                    diameterMinFactor(0, temp.getBlackBody(), temp.getEarthDensity())
+                    ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(),temp.getEarthDensity()));//call gravity method
+                temp.setMass(calcMass(temp.getEarthDensity(),temp.getEarthsDiameter()));//call mass method
+                temp.setPressure(calcPressure(temp.getAtmoMass(),temp.getSurfaceGravity(),0));//call pressure method
+                worlds[cursor] = temp;//store World in worlds array
+                cursor++;//increment cursor
+            }
+
+            //TODO - world types 1 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)

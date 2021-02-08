@@ -12,7 +12,7 @@ namespace gurpsmoontest
     
     public partial class moons : System.Web.UI.Page
     {
-        int[] worldTypes = new int[20];    
+        int[] worldTypes = new int[21];    
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,6 +43,7 @@ namespace gurpsmoontest
             worldTypes[17] = dropLargeOceanWorld.SelectedIndex;//Large Ocean World - 17
             worldTypes[18] = dropLargeIceWorld.SelectedIndex;//Large Ice World - 18
             worldTypes[19] = dropGasGiants.SelectedIndex;// Gas Giant - 19
+            //asteroid belt - 20 NOT IMPLEMENTED
 
             Context.Items.Add("worldTypes", worldTypes);
             Server.Transfer("~/calcpage.aspx");
