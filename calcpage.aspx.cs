@@ -23,28 +23,81 @@ namespace gurpsmoontest
             lblWorldsGet.Text = "Counting worlds... complete!";
             lblWorldsInitialize.Text = "Initializing tiny worlds...";
 
-            for (int i = 0; i>worldTypes[0];i++) {//tiny ice world generation
-                World temp = new World();//create new World object
-                temp.setType(0);//set type
-                temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method
-                temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
-                temp.setAtmoMass(genAtmo(roll3D()));//generate atmospheric mass by passing 3D6
-                temp.setHydro(iceHydro(roll1D()));//call genydro with ice world method
-                temp.setSurfaceTemp(genSurfaceTemp(0, roll3D()));//generate surface temperature
-                temp.setBlackBody(genBlackbody(0, temp.getAtmoMass(), temp.getSurfaceTemp(),temp.getHydro()));//set blackbody value with previously generated values
-                temp.setEarthsDiameter(calcDiameter(0, rand,
-                    diameterMaxFactor(0, temp.getBlackBody(), temp.getEarthDensity()),
-                    diameterMinFactor(0, temp.getBlackBody(), temp.getEarthDensity())
-                    ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
-                temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
-                temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(),temp.getEarthDensity()));//call gravity method
-                temp.setMass(calcMass(temp.getEarthDensity(),temp.getEarthsDiameter()));//call mass method
-                temp.setPressure(calcPressure(temp.getAtmoMass(),temp.getSurfaceGravity(),0));//call pressure method
-                worlds[cursor] = temp;//store World in worlds array
-                cursor++;//increment cursor
+            if (worldTypes[0] > 0) {//if tiny ice worlds
+                for (int i = 0; i > worldTypes[0]; i++) {//tiny ice world generation
+                    World temp = new World();//create new World object
+                    temp.setType(0);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//it's cold outside, there's no kind of atmosphere
+                    temp.setHydro(iceHydro(roll1D()));//set hydro with ice world method
+                    temp.setSurfaceTemp(genSurfaceTemp(0, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(0, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(0, rand,
+                        diameterMaxFactor(0, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(0, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                } }
+
+            if (worldTypes[1] > 0)
+            {//if tiny sulfur worlds
+                for (int i = 0; i > worldTypes[1]; i++)
+                {//tiny sulfur world generation
+                    World temp = new World();//create new World object
+                    temp.setType(1);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//tiny worlds have no atmosphere
+                    temp.setHydro(genHydro(1, rand));//call genydro
+                    temp.setSurfaceTemp(genSurfaceTemp(1, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(1, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(1, rand,
+                        diameterMaxFactor(1, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(1, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
             }
 
-            //TODO - world types 1 - 18
+            if (worldTypes[2] > 0)
+            {//if tiny rock worlds
+                for (int i = 0; i > worldTypes[2]; i++)
+                {//tiny rock world generation
+                    World temp = new World();//create new World object
+                    temp.setType(2);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//tiny worlds have no atmosphere
+                    temp.setHydro(genHydro(2, rand));//call genydro
+                    temp.setSurfaceTemp(genSurfaceTemp(2, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(2, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(2, rand,
+                        diameterMaxFactor(2, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(2, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            lblWorldsInitialize.Text = "Tiny worlds complete. Initializing standard worlds...";
+
+            //TODO - world types 3 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
