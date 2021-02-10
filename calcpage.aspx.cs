@@ -95,9 +95,86 @@ namespace gurpsmoontest
                 }
             }
 
-            lblWorldsInitialize.Text = "Tiny worlds complete. Initializing standard worlds...";
+            lblWorldsInitialize.Text = "Tiny worlds complete. Initializing small worlds...";
 
-            //TODO - world types 3 - 18
+            if (worldTypes[3] > 0)
+            {//if small Hadean worlds
+                for (int i = 0; i > worldTypes[3]; i++)
+                {//small Hadean world generation
+                    World temp = new World();//create new World object
+                    temp.setType(3);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//small Hadean worlds have no atmosphere
+                    temp.setHydro(genHydro(3, rand));//call genydro
+                    temp.setSurfaceTemp(genSurfaceTemp(3, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(3, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(3, rand,
+                        diameterMaxFactor(3, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(3, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            if (worldTypes[4] > 0)
+            {//if small ice worlds
+                for (int i = 0; i > worldTypes[4]; i++)
+                {//small ice world generation
+                    World temp = new World();//create new World object
+                    temp.setType(4);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//small Hadean worlds have no atmosphere
+                    temp.setHydro(genHydro(4, rand));//call genydro
+                    temp.setSurfaceTemp(genSurfaceTemp(4, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(4, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(4, rand,
+                        diameterMaxFactor(4, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(4, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            if (worldTypes[5] > 0)
+            {//if small rocky worlds
+                for (int i = 0; i > worldTypes[5]; i++)
+                {//small rocky world generation
+                    World temp = new World();//create new World object
+                    temp.setType(5);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//small rocky worlds have no atmosphere
+                    temp.setHydro(genHydro(5, rand));//call genydro
+                    temp.setSurfaceTemp(genSurfaceTemp(5, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(5, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(5, rand,
+                        diameterMaxFactor(5, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(5, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            lblWorldsInitialize.Text = "Small worlds complete. Initializing standard worlds...";
+
+            //TODO - world types 6 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
