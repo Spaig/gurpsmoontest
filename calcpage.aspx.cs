@@ -174,7 +174,32 @@ namespace gurpsmoontest
 
             lblWorldsInitialize.Text = "Small worlds complete. Initializing standard worlds...";
 
-            //TODO - world types 6 - 18
+            if (worldTypes[6] > 0)
+            {//if standard hadean worlds
+                for (int i = 0; i > worldTypes[6]; i++)
+                {//standard hadean world generation
+                    World temp = new World();//create new World object
+                    temp.setType(6);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//standard hadean worlds have no atmosphere
+                    temp.setHydro(0);//hadean worlds lack hydrographic coverage
+                    temp.setSurfaceTemp(genSurfaceTemp(6, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(6, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(6, rand,
+                        diameterMaxFactor(6, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(6, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO - world types 7 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
