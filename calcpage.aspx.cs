@@ -64,7 +64,7 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 1));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
@@ -89,7 +89,7 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 2));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
@@ -116,7 +116,7 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 3));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
@@ -141,7 +141,7 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 4));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
@@ -166,7 +166,7 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 5));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
@@ -193,13 +193,63 @@ namespace gurpsmoontest
                     temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
                     temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
                     temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
-                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 0));//call pressure method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 6));//call pressure method
                     worlds[cursor] = temp;//store World in worlds array
                     cursor++;//increment cursor
                 }
             }
 
-            //TODO - world types 7 - 18
+            if (worldTypes[7] > 0)
+            {//if Standard Ammonian worlds
+                for (int i = 0; i > worldTypes[6]; i++)
+                {//Standard Ammonian generation
+                    World temp = new World();//create new World object
+                    temp.setType(7);//set type
+                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//Standard Ammonian world generation
+                    temp.setHydro(genHydro(7, rand));//hadean worlds lack hydrographic coverage
+                    temp.setSurfaceTemp(genSurfaceTemp(7, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(7, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(7, rand,
+                        diameterMaxFactor(7, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(7, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 7));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            if (worldTypes[8] > 0)
+            {//if Standard Greenhouse worlds
+                for (int i = 0; i > worldTypes[6]; i++)
+                {//Standard Greenhouse generation
+                    World temp = new World();//create new World object
+                    temp.setType(8);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard Greenhouse worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//Standard Greenhouse world generation
+                    temp.setHydro(genHydro(8, rand));//hadean worlds lack hydrographic coverage
+                    temp.setSurfaceTemp(genSurfaceTemp(8, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(8, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(8, rand,
+                        diameterMaxFactor(8, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(8, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 8));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO - world types 9 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
