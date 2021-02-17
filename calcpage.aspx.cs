@@ -201,7 +201,7 @@ namespace gurpsmoontest
 
             if (worldTypes[7] > 0)
             {//if Standard Ammonian worlds
-                for (int i = 0; i > worldTypes[6]; i++)
+                for (int i = 0; i > worldTypes[7]; i++)
                 {//Standard Ammonian generation
                     World temp = new World();//create new World object
                     temp.setType(7);//set type
@@ -226,14 +226,14 @@ namespace gurpsmoontest
 
             if (worldTypes[8] > 0)
             {//if Standard Greenhouse worlds
-                for (int i = 0; i > worldTypes[6]; i++)
+                for (int i = 0; i > worldTypes[8]; i++)
                 {//Standard Greenhouse generation
                     World temp = new World();//create new World object
                     temp.setType(8);//set type
                     temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard Greenhouse worlds have large iron cores
                     temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
                     temp.setAtmoMass(genAtmo(roll3D()));//Standard Greenhouse world generation
-                    temp.setHydro(genHydro(8, rand));//hadean worlds lack hydrographic coverage
+                    temp.setHydro(genHydro(8, rand));//greenhouse worlds have weird hydrospheres
                     temp.setSurfaceTemp(genSurfaceTemp(8, roll3D()));//generate surface temperature
                     temp.setBlackBody(genBlackbody(8, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
                     temp.setEarthsDiameter(calcDiameter(8, rand,
@@ -249,7 +249,32 @@ namespace gurpsmoontest
                 }
             }
 
-            //TODO - world types 9 - 18
+            if (worldTypes[9] > 0)
+            {//if Standard Cthon worlds
+                for (int i = 0; i > worldTypes[9]; i++)
+                {//Standard Cthon generation
+                    World temp = new World();//create new World object
+                    temp.setType(9);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard Greenhouse worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//Cthonian worlds always have a Trace atmosphere only
+                    temp.setHydro(0);//Cthonian worlds always have zero hydrographic coverage 
+                    temp.setSurfaceTemp(genSurfaceTemp(9, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(9, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(9, rand,
+                        diameterMaxFactor(9, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(9, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 9));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO - world types 10 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
