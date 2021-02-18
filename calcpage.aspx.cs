@@ -274,7 +274,32 @@ namespace gurpsmoontest
                 }
             }
 
-            //TODO - world types 10 - 18
+            if (worldTypes[10] > 0)
+            {//if Standard Garden worlds
+                for (int i = 0; i > worldTypes[10]; i++)
+                {//Standard Garden generation
+                    World temp = new World();//create new World object
+                    temp.setType(10);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard Greenhouse worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//Garden worlds have normal atmospheres
+                    temp.setHydro(genHydro(10, rand));//Garden worlds have normal hydrographic coverage 
+                    temp.setSurfaceTemp(genSurfaceTemp(10, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(10, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values
+                    temp.setEarthsDiameter(calcDiameter(10, rand,
+                        diameterMaxFactor(10, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(10, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 10));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO - world types 11 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
