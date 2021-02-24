@@ -76,7 +76,7 @@ namespace gurpsmoontest
                 {//tiny rock world generation
                     World temp = new World();//create new World object
                     temp.setType(2);//set type
-                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setEarthDensity(smIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
                     temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
                     temp.setAtmoMass(0);//tiny worlds have no atmosphere
                     temp.setHydro(genHydro(2, rand));//call genydro
@@ -153,7 +153,7 @@ namespace gurpsmoontest
                 {//small rocky world generation
                     World temp = new World();//create new World object
                     temp.setType(5);//set type
-                    temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
+                    temp.setEarthDensity(smIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - all Tiny worlds have icy cores
                     temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
                     temp.setAtmoMass(0);//small rocky worlds have no atmosphere
                     temp.setHydro(genHydro(5, rand));//call genydro
@@ -299,7 +299,32 @@ namespace gurpsmoontest
                 }
             }
 
-            //TODO - world types 11 - 18
+            if (worldTypes[11] > 0)
+            {//if Standard Ocean worlds
+                for (int i = 0; i > worldTypes[11]; i++)
+                {//Standard Ocean generation
+                    World temp = new World();//create new World object
+                    temp.setType(11);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard Ocean worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//Ocean worlds have normal atmospheres
+                    temp.setHydro(genHydro(11, rand));//Garden worlds have normal hydrographic coverage 
+                    temp.setSurfaceTemp(genSurfaceTemp(11, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(11, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values -should call special method
+                    temp.setEarthsDiameter(calcDiameter(11, rand,
+                        diameterMaxFactor(11, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(11, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 11));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO - world types 12 - 18
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
