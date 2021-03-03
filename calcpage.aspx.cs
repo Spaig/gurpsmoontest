@@ -401,6 +401,31 @@ namespace gurpsmoontest
                 }
             }
 
+            if (worldTypes[15] > 0)
+            {//if Large Cthonian World
+                for (int i = 0; i > worldTypes[11]; i++)
+                {//Large Cthonian World generation
+                    World temp = new World();//create new World object
+                    temp.setType(15);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard and large worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(0);//Cthonian worlds have no atmosphere
+                    temp.setHydro(0);//also no hydrographic coverage
+                    temp.setSurfaceTemp(genSurfaceTemp(15, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(15, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values -should call special method
+                    temp.setEarthsDiameter(calcDiameter(15, rand,
+                        diameterMaxFactor(15, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(15, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 15));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
             //TODO - world types 15 - 18
         }
 
