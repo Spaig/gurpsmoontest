@@ -476,8 +476,32 @@ namespace gurpsmoontest
                 }
             }
 
-            //TODO - world type 18
-            //TODO 
+            if (worldTypes[18] > 0)
+            {//if Large Ice World
+                for (int i = 0; i > worldTypes[18]; i++)
+                {//Large Ice World  generation
+                    World temp = new World();//create new World object
+                    temp.setType(18);//set type
+                    temp.setEarthDensity(lgIronCoreDensity(roll3D()));//set density by passing 3D6 into density method - Standard and large worlds have large iron cores
+                    temp.setMetricDensity(densityConversion(temp.getEarthDensity()));//call density conversion method on first density value
+                    temp.setAtmoMass(genAtmo(roll3D()));//normal atmospheres
+                    temp.setHydro(genHydro(18, rand));//normal hydrographic call, triggers special ocean world calc
+                    temp.setSurfaceTemp(genSurfaceTemp(18, roll3D()));//generate surface temperature
+                    temp.setBlackBody(genBlackbody(18, temp.getAtmoMass(), temp.getSurfaceTemp(), temp.getHydro()));//set blackbody value with previously generated values -should call special method
+                    temp.setEarthsDiameter(calcDiameter(18, rand,
+                        diameterMaxFactor(18, temp.getBlackBody(), temp.getEarthDensity()),
+                        diameterMinFactor(18, temp.getBlackBody(), temp.getEarthDensity())
+                        ));//heckin doozy of a call - calculate diameter by calculating max and min and passing it to main calc method
+                    temp.setMilesDiameter(diameterToMiles(temp.getEarthsDiameter()));//call conversion method
+                    temp.setSurfaceGravity(calcSurfGrav(temp.getEarthsDiameter(), temp.getEarthDensity()));//call gravity method
+                    temp.setMass(calcMass(temp.getEarthDensity(), temp.getEarthsDiameter()));//call mass method
+                    temp.setPressure(calcPressure(temp.getAtmoMass(), temp.getSurfaceGravity(), 18));//call pressure method
+                    worlds[cursor] = temp;//store World in worlds array
+                    cursor++;//increment cursor
+                }
+            }
+
+            //TODO check over generation loops
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
