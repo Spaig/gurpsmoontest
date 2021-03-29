@@ -47,6 +47,55 @@ namespace gurpsmoontest
             return this.worldType;
         }
 
+        public string getTypeName()
+        {
+            switch (this.worldType) {
+                case 0:
+                    return "Tiny Ice";
+                case 1:
+                    return "Tiny Sulfur";
+                case 2:
+                    return "Tiny Rock";
+                case 3:
+                    return "Small Hadean";
+                case 4:
+                    return "Small Ice";
+                case 5:
+                    return "Small Rock";
+                case 6:
+                    return "Standard Hadean";
+                case 7:
+                    return "Standard Ammonia";
+                case 8:
+                    return "Standard Greenhouse";
+                case 9:
+                    return "Standard Cthonian";
+                case 10:
+                    return "Standard Garden";
+                case 11:
+                    return "Standard Ocean";
+                case 12:
+                    return "Standard Ice";
+                case 13:
+                    return "Large Ammonia";
+                case 14:
+                    return "Large Greenhouse";
+                case 15:
+                    return "Large Cthonian";
+                case 16:
+                    return "Large Garden";
+                case 17:
+                    return "Large Ocean";
+                case 18:
+                    return "Large Ice";
+                case 19:
+                    return "Gas Giant";
+                default:
+                    return "Failed";
+        }
+            
+        }
+
         public void setAtmoMass(double x)
         {
             this.atmomass = x;

@@ -16,11 +16,11 @@ namespace gurpsmoontest
         protected void Page_Load(object sender, EventArgs e)
         {
             lblWorldsGet.Text = "Counting worlds...";
-            worldTypes = (int[])Context.Items[worldTypes];
+            worldTypes = (int[])Session["worldTypes"];
             foreach (int x in worldTypes) {//get number of worlds to generate
                 count = count + x;
             }
-            lblWorldsGet.Text = "Counting worlds... complete!";
+            lblWorldsGet.Text = "Counting worlds... complete!" + "Generating " + count + " worlds...";
             lblWorldsInitialize.Text = "Initializing tiny worlds...";
 
             if (worldTypes[0] > 0) {//if tiny ice worlds
@@ -502,11 +502,16 @@ namespace gurpsmoontest
             }
 
             //TODO check over generation loops
+
+            btnProceed.Enabled = true;
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
         {
-            Context.Items.Add("worlds", worlds);
+
+            Session["worlds"] = worlds;
+            Session["count"] = count;
+
             Server.Transfer("~/results.aspx");
         }
 

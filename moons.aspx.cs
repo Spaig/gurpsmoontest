@@ -43,9 +43,10 @@ namespace gurpsmoontest
             worldTypes[17] = dropLargeOceanWorld.SelectedIndex;//Large Ocean World - 17
             worldTypes[18] = dropLargeIceWorld.SelectedIndex;//Large Ice World - 18
             worldTypes[19] = dropGasGiants.SelectedIndex;// Gas Giant - 19
-            //asteroid belt - 20 NOT IMPLEMENTED
+                                                         //asteroid belt - 20 NOT IMPLEMENTED
 
-            Context.Items.Add("worldTypes", worldTypes);
+            // Context.Items.Add("worldTypes", worldTypes);
+            Session["worldTypes"] = worldTypes;
             Server.Transfer("~/calcpage.aspx");
         }  
     }
