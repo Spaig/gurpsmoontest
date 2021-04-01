@@ -51,6 +51,42 @@ namespace gurpsmoontest
         protected global::System.Web.UI.WebControls.Label lblWorldsInitialize;
 
         /// <summary>
+        /// lblSmWorldsInitialize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSmWorldsInitialize;
+
+        /// <summary>
+        /// lblNormWorldsInitialize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNormWorldsInitialize;
+
+        /// <summary>
+        /// lblLargeWorldsInitialize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLargeWorldsInitialize;
+
+        /// <summary>
+        /// lblNoWorlds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoWorlds;
+
+        /// <summary>
         /// btnProceed control.
         /// </summary>
         /// <remarks>
@@ -58,5 +94,14 @@ namespace gurpsmoontest
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnProceed;
+
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }

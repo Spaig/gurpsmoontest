@@ -24,7 +24,7 @@ namespace gurpsmoontest
             DataTable worldsLink = new DataTable();//set up DataTable
             worldsLink.Columns.Add("Class", Type.GetType("System.String"));
             worldsLink.Columns.Add("Atmospheric Mass", Type.GetType("System.String"));
-            worldsLink.Columns.Add("Hydrographics", Type.GetType("System.String"));
+            worldsLink.Columns.Add("Hydrographic Coverage (%)", Type.GetType("System.String"));
             worldsLink.Columns.Add("Surface Temp (K)", Type.GetType("System.String"));
             worldsLink.Columns.Add("Density (g/cc)", Type.GetType("System.String"));
             worldsLink.Columns.Add("Diameter (Miles)", Type.GetType("System.String"));
@@ -39,7 +39,7 @@ namespace gurpsmoontest
                 worldsLink.Rows.Add();//populate DataTable
                 worldsLink.Rows[worldsLink.Rows.Count - 1]["Class"] = worlds[i].getTypeName();
                 worldsLink.Rows[worldsLink.Rows.Count - 1]["Atmospheric Mass"] = worlds[i].getAtmoMass();
-                worldsLink.Rows[worldsLink.Rows.Count - 1]["Hydrographics"] = worlds[i].getHydro();
+                worldsLink.Rows[worldsLink.Rows.Count - 1]["Hydrographic Coverage (%)"] = worlds[i].getHydro();
                 worldsLink.Rows[worldsLink.Rows.Count - 1]["Surface Temp (K)"] = worlds[i].getSurfaceTemp();
                 worldsLink.Rows[worldsLink.Rows.Count - 1]["Density (g/cc)"] = worlds[i].getMetricDensity();
                 worldsLink.Rows[worldsLink.Rows.Count - 1]["Diameter (Miles)"] = worlds[i].getMilesDiameter();

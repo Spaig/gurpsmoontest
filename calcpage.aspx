@@ -19,14 +19,32 @@
             Step 2: Calculation</div>
         <asp:Label ID="lblWorldsGot" runat="server" Text=" "></asp:Label>
         <p class="auto-style1">
-            X
-            <asp:Label ID="lblWorldsGet" runat="server" Text=" "></asp:Label>
+            
+            <asp:Label ID="lblWorldsGet" runat="server" Text="Initializing tiny worlds..."></asp:Label>
         </p>
         <p class="auto-style1">
-            X
-            <asp:Label ID="lblWorldsInitialize" runat="server" Text=" "></asp:Label>
+            
+            <asp:Label ID="lblWorldsInitialize" runat="server" Text="Tiny worlds complete. Initializing small worlds..." Visible="False"></asp:Label>
+        </p>
+        <p class="auto-style1">
+            
+            <asp:Label ID="lblSmWorldsInitialize" runat="server" Text="Small worlds complete. Initializing standard worlds..." Visible="False"></asp:Label>
+        </p>
+        <p class="auto-style1">
+            
+            <asp:Label ID="lblNormWorldsInitialize" runat="server" Text="Standard worlds complete. Initializing large worlds..." Visible="False"></asp:Label>
+        </p>
+        <p class="auto-style1">
+            
+            <asp:Label ID="lblLargeWorldsInitialize" runat="server" Text=" World initialization complete!" Visible="False"></asp:Label>
+        </p>
+        <p class="auto-style1">
+            
+            <asp:Label ID="lblNoWorlds" runat="server" Text="No worlds selected to generate! Go back?" Visible="False"></asp:Label>
         </p>
         <asp:Button ID="btnProceed" runat="server" Enabled="False" OnClick="btnProceed_Click" Text="PROCEED" />
+    &nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="BACK" />
     </form>
 </body>
 </html>

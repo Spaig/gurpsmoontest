@@ -45,7 +45,6 @@ namespace gurpsmoontest
             worldTypes[19] = dropGasGiants.SelectedIndex;// Gas Giant - 19
                                                          //asteroid belt - 20 NOT IMPLEMENTED
 
-            // Context.Items.Add("worldTypes", worldTypes);
             Session["worldTypes"] = worldTypes;
             Server.Transfer("~/calcpage.aspx");
         }  
@@ -53,7 +52,7 @@ namespace gurpsmoontest
 }
 
 //OVERALL TODO
-//data flow
+//why is atmomass binary?
 //display (chart? exporting?)
 
 //Stretch TODO

@@ -107,7 +107,7 @@ namespace gurpsmoontest
         }
 
         public void setHydro(int x) {
-            this.hydrocoeff = x;        
+            this.hydrocoeff = x*10;        
         }
 
         public int getHydro() {

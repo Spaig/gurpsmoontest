@@ -21,10 +21,10 @@ namespace gurpsmoontest
                 count = count + x;
             }
             lblWorldsGet.Text = "Counting worlds... complete!" + "Generating " + count + " worlds...";
-            lblWorldsInitialize.Text = "Initializing tiny worlds...";
+            lblWorldsInitialize.Visible = true;
 
             if (worldTypes[0] > 0) {//if tiny ice worlds
-                for (int i = 0; i > worldTypes[0]; i++) {//tiny ice world generation
+                for (int i = 0; i < worldTypes[0]; i++) {//tiny ice world generation
                     World temp = new World();//create new World object
                     temp.setType(0);//set type
                     temp.setEarthDensity(icyCoreDensity(roll3D()));//set density by passing 3D6 into density method
@@ -47,7 +47,7 @@ namespace gurpsmoontest
 
             if (worldTypes[1] > 0)
             {//if tiny sulfur worlds
-                for (int i = 0; i > worldTypes[1]; i++)
+                for (int i = 0; i < worldTypes[1]; i++)
                 {//tiny sulfur world generation
                     World temp = new World();//create new World object
                     temp.setType(1);//set type
@@ -72,7 +72,7 @@ namespace gurpsmoontest
 
             if (worldTypes[2] > 0)
             {//if tiny rock worlds
-                for (int i = 0; i > worldTypes[2]; i++)
+                for (int i = 0; i < worldTypes[2]; i++)
                 {//tiny rock world generation
                     World temp = new World();//create new World object
                     temp.setType(2);//set type
@@ -95,11 +95,11 @@ namespace gurpsmoontest
                 }
             }
 
-            lblWorldsInitialize.Text = "Tiny worlds complete. Initializing small worlds...";
+            lblWorldsInitialize.Visible = true;
 
             if (worldTypes[3] > 0)
             {//if small Hadean worlds
-                for (int i = 0; i > worldTypes[3]; i++)
+                for (int i = 0; i < worldTypes[3]; i++)
                 {//small Hadean world generation
                     World temp = new World();//create new World object
                     temp.setType(3);//set type
@@ -124,7 +124,7 @@ namespace gurpsmoontest
 
             if (worldTypes[4] > 0)
             {//if small ice worlds
-                for (int i = 0; i > worldTypes[4]; i++)
+                for (int i = 0; i < worldTypes[4]; i++)
                 {//small ice world generation
                     World temp = new World();//create new World object
                     temp.setType(4);//set type
@@ -149,7 +149,7 @@ namespace gurpsmoontest
 
             if (worldTypes[5] > 0)
             {//if small rocky worlds
-                for (int i = 0; i > worldTypes[5]; i++)
+                for (int i = 0; i < worldTypes[5]; i++)
                 {//small rocky world generation
                     World temp = new World();//create new World object
                     temp.setType(5);//set type
@@ -172,11 +172,11 @@ namespace gurpsmoontest
                 }
             }
 
-            lblWorldsInitialize.Text = "Small worlds complete. Initializing standard worlds...";
+            lblSmWorldsInitialize.Visible = true;
 
             if (worldTypes[6] > 0)
             {//if standard hadean worlds
-                for (int i = 0; i > worldTypes[6]; i++)
+                for (int i = 0; i < worldTypes[6]; i++)
                 {//standard hadean world generation
                     World temp = new World();//create new World object
                     temp.setType(6);//set type
@@ -201,7 +201,7 @@ namespace gurpsmoontest
 
             if (worldTypes[7] > 0)
             {//if Standard Ammonian worlds
-                for (int i = 0; i > worldTypes[7]; i++)
+                for (int i = 0; i < worldTypes[7]; i++)
                 {//Standard Ammonian generation
                     World temp = new World();//create new World object
                     temp.setType(7);//set type
@@ -226,7 +226,7 @@ namespace gurpsmoontest
 
             if (worldTypes[8] > 0)
             {//if Standard Greenhouse worlds
-                for (int i = 0; i > worldTypes[8]; i++)
+                for (int i = 0; i < worldTypes[8]; i++)
                 {//Standard Greenhouse generation
                     World temp = new World();//create new World object
                     temp.setType(8);//set type
@@ -251,7 +251,7 @@ namespace gurpsmoontest
 
             if (worldTypes[9] > 0)
             {//if Standard Cthon worlds
-                for (int i = 0; i > worldTypes[9]; i++)
+                for (int i = 0; i < worldTypes[9]; i++)
                 {//Standard Cthon generation
                     World temp = new World();//create new World object
                     temp.setType(9);//set type
@@ -276,7 +276,7 @@ namespace gurpsmoontest
 
             if (worldTypes[10] > 0)
             {//if Standard Garden worlds
-                for (int i = 0; i > worldTypes[10]; i++)
+                for (int i = 0; i < worldTypes[10]; i++)
                 {//Standard Garden generation
                     World temp = new World();//create new World object
                     temp.setType(10);//set type
@@ -301,7 +301,7 @@ namespace gurpsmoontest
 
             if (worldTypes[11] > 0)
             {//if Standard Ocean worlds
-                for (int i = 0; i > worldTypes[11]; i++)
+                for (int i = 0; i < worldTypes[11]; i++)
                 {//Standard Ocean generation
                     World temp = new World();//create new World object
                     temp.setType(11);//set type
@@ -326,7 +326,7 @@ namespace gurpsmoontest
 
             if (worldTypes[12] > 0)
             {//if Standard Ice Worlds
-                for (int i = 0; i > worldTypes[12]; i++)
+                for (int i = 0; i < worldTypes[12]; i++)
                 {//Standard Ice World generation
                     World temp = new World();//create new World object
                     temp.setType(12);//set type
@@ -349,11 +349,11 @@ namespace gurpsmoontest
                 }
             }
 
-            lblWorldsInitialize.Text = "Standard worlds complete. Initializing large worlds...";
+            lblNormWorldsInitialize.Visible = true;
 
             if (worldTypes[13] > 0)
             {//if Large Ammonian World 
-                for (int i = 0; i > worldTypes[13]; i++)
+                for (int i = 0; i < worldTypes[13]; i++)
                 {//Large Ammonian World  generation
                     World temp = new World();//create new World object
                     temp.setType(13);//set type
@@ -378,7 +378,7 @@ namespace gurpsmoontest
 
             if (worldTypes[14] > 0)
             {//if Large Greenhouse World 
-                for (int i = 0; i > worldTypes[14]; i++)
+                for (int i = 0; i < worldTypes[14]; i++)
                 {//Large Greenhouse World  generation
                     World temp = new World();//create new World object
                     temp.setType(14);//set type
@@ -403,7 +403,7 @@ namespace gurpsmoontest
 
             if (worldTypes[15] > 0)
             {//if Large Cthonian World
-                for (int i = 0; i > worldTypes[15]; i++)
+                for (int i = 0; i < worldTypes[15]; i++)
                 {//Large Cthonian World generation
                     World temp = new World();//create new World object
                     temp.setType(15);//set type
@@ -428,7 +428,7 @@ namespace gurpsmoontest
 
             if (worldTypes[16] > 0)
             {//if Large Garden World
-                for (int i = 0; i > worldTypes[16]; i++)
+                for (int i = 0; i < worldTypes[16]; i++)
                 {//Large Garden World  generation
                     World temp = new World();//create new World object
                     temp.setType(16);//set type
@@ -453,7 +453,7 @@ namespace gurpsmoontest
 
             if (worldTypes[17] > 0)
             {//ifLarge Ocean World
-                for (int i = 0; i > worldTypes[17]; i++)
+                for (int i = 0; i < worldTypes[17]; i++)
                 {//Large Ocean World  generation
                     World temp = new World();//create new World object
                     temp.setType(17);//set type
@@ -478,7 +478,7 @@ namespace gurpsmoontest
 
             if (worldTypes[18] > 0)
             {//if Large Ice World
-                for (int i = 0; i > worldTypes[18]; i++)
+                for (int i = 0; i < worldTypes[18]; i++)
                 {//Large Ice World  generation
                     World temp = new World();//create new World object
                     temp.setType(18);//set type
@@ -501,9 +501,14 @@ namespace gurpsmoontest
                 }
             }
 
-            //TODO check over generation loops
+            lblLargeWorldsInitialize.Visible = true;
 
-            btnProceed.Enabled = true;
+            if (count > 0) {//if worlds have been generated, enable PROCEED button
+                btnProceed.Enabled = true; }
+            else
+            {
+                lblNoWorlds.Visible = true;//else show error message
+            }
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
@@ -514,6 +519,12 @@ namespace gurpsmoontest
 
             Server.Transfer("~/results.aspx");
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/moons.aspx");
+        }
+
 
         public int roll3D()
         {
