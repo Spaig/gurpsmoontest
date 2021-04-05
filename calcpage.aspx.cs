@@ -578,7 +578,7 @@ namespace gurpsmoontest
 
         public double genAtmo(int threedee)
         {
-            double atmo = threedee / 10;
+            double atmo = threedee / 10.0;
             return atmo;
         }
         public int genHydro(int type, Random rand)
