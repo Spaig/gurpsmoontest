@@ -23,6 +23,9 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
+        <br />
+        <br />
+        <asp:Button ID="btnCSVExport" runat="server" OnClick="btnCSVExport_Click" Text="Export to CSV" />
     </form>
 </body>
 </html>

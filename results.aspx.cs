@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace gurpsmoontest
 {
     public partial class results : System.Web.UI.Page
     {
+        DataTable worldsLink;//instantiate DataTable
         protected void Page_Load(object sender, EventArgs e)
         {
             int count = (int)Session["count"];//get number of worlds from session variable
@@ -21,7 +24,7 @@ namespace gurpsmoontest
             //TODO " System.NullReferenceException: 'Object reference not set to an instance of an object.' - worlds[] was null"
             //probably just messed up the variable passing - fix next session
 
-            DataTable worldsLink = new DataTable();//set up DataTable
+            worldsLink = new DataTable();//set up DataTable
             worldsLink.Columns.Add("Class", Type.GetType("System.String"));
             worldsLink.Columns.Add("Atmospheric Mass", Type.GetType("System.String"));
             worldsLink.Columns.Add("Hydrographic Coverage (%)", Type.GetType("System.String"));
@@ -51,6 +54,31 @@ namespace gurpsmoontest
             grdMoons.DataBind();
 
         }
+
+        protected void btnCSVExport_Click(object sender, EventArgs e)
+        {
+            //checked empty and/or null worldsLink
+            if (worldsLink != null && worldsLink.Rows.Count > 0)
+            {
+                // create a StringBuilder
+                StringBuilder stringy = new StringBuilder();
+
+                // get columns from worldslink and add to string array
+                string[] columnNames = worldsLink.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToArray();
+
+                // create comma-ized column namse based on string array
+                stringy.AppendLine(string.Join(",", columnNames));
+
+                // get rows from worldsLink and add comma separated values
+                foreach (DataRow row in worldsLink.Rows)
+                {
+                    IEnumerable<string> fields = row.ItemArray.Select(field => string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
+                    stringy.AppendLine(string.Join(",", fields));
+                }
+
+                // TODO save/download the file - output now exists as a CSV string
+               // File.WriteAllText(@"F:\moony.csv", stringy.ToString());
+            }
 
 
 
