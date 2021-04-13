@@ -26,6 +26,7 @@
         <br />
         <br />
         <asp:Button ID="btnCSVExport" runat="server" OnClick="btnCSVExport_Click" Text="Export to CSV" />
+    &nbsp;<asp:Button ID="btnPDFExport" runat="server" OnClick="btnPDFExport_Click" Text="Export to PDF" />
     </form>
 </body>
 </html>

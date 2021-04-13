@@ -51,9 +51,7 @@ namespace gurpsmoontest
     }
 }
 
-//OVERALL TODO
-//why is atmomass binary?
-//display (chart? exporting?)
+
 
 //Stretch TODO
 //convert to whole-system generator
@@ -61,3 +59,4 @@ namespace gurpsmoontest
 //generate planets
 //hook up moon system to planets
 //blackbody base calculation
+//create sexier display method

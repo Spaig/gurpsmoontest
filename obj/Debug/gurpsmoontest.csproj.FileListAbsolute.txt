@@ -57,3 +57,6 @@ C:\Users\Del Spaig\source\repos\gurpsmoontest\obj\Debug\gurpsmoontest.csproj.Cor
 C:\Users\Del Spaig\source\repos\gurpsmoontest\obj\Debug\gurpsmoontest.csproj.CopyComplete
 C:\Users\Del Spaig\source\repos\gurpsmoontest\obj\Debug\gurpsmoontest.dll
 C:\Users\Del Spaig\source\repos\gurpsmoontest\obj\Debug\gurpsmoontest.pdb
+C:\Users\Del Spaig\source\repos\gurpsmoontest\bin\BouncyCastle.Crypto.dll
+C:\Users\Del Spaig\source\repos\gurpsmoontest\bin\itextsharp.dll
+C:\Users\Del Spaig\source\repos\gurpsmoontest\bin\itextsharp.xml
