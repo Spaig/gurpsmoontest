@@ -75,6 +75,7 @@
   <ItemGroup>
     <Content Include="calcpage.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="moons.aspx" />
     <Content Include="results.aspx" />
     <Content Include="Web.config" />
@@ -109,6 +110,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\gurpsmoons - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

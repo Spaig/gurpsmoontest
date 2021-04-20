@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <strong><em><span class="auto-style1">World Generator 0.3- Refreshing Page Will Purge Results!<br />
+            <strong><em><span class="auto-style1">World Generator 0.4- Refreshing Page Will Purge Results!<br />
             Step 1: Define World Types<br />
             </span></em></strong><br />
         </div>
@@ -263,7 +263,7 @@
             &nbsp;</p>
         <p>
             <strong>Gas Giants:</strong>
-            <asp:DropDownList ID="dropGasGiants" runat="server">
+            <asp:DropDownList ID="dropGasGiants" runat="server" Enabled="False" Visible="False">
                 <asp:ListItem>0</asp:ListItem>
                 <asp:ListItem>1</asp:ListItem>
                 <asp:ListItem>2</asp:ListItem>
@@ -272,7 +272,7 @@
                 <asp:ListItem>5</asp:ListItem>
                 <asp:ListItem>6</asp:ListItem>
             </asp:DropDownList>
-        </p>
+        &nbsp;(not implemented yet)</p>
         <p>
             &nbsp;</p>
         <p>

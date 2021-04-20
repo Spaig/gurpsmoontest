@@ -604,9 +604,9 @@ namespace gurpsmoontest
                 case 11:
                     return (rand.Next(5) + 1) + 4;//1d plus 4
                 case 16:
-                    return (rand.Next(5) + 1) + 6;//1d plus 6
+                    return Math.Min(10, ((rand.Next(5) + 1) + 6));//1d plus 6 (round down to 100%) 
                 case 17:
-                    return (rand.Next(5) + 1) + 6;//1d plus 6
+                    return Math.Min(10, ((rand.Next(5) + 1) + 6));//1d plus 6 (round down to 100%)
                 default:
                     return 0;
             }
